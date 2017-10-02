@@ -50,7 +50,7 @@ public class Lexer {
     /**
      * fillQueue is used to read a line once from the source code, and add it to the queue of tokens, if the i is
      * greater than the size of the queue, and there is still rest code in the source file,
-     * then read a line from source code, and return true, else return false;
+     * then read a line from source code, and return true, else return false.
      * @param i
      * @return
      * @throws ParseException
@@ -67,7 +67,9 @@ public class Lexer {
     }
 
     /**
-     * read a line once and
+     * 不想写英文了，接下来全部中文注释
+     * 从源文件中读取一行，顺便启动正则表达式进行匹配，每次匹配到一个Token将其添加到queue中，
+     * 更新匹配的位置pos，一行匹配结束以后，在queue的后面加上EOL表示一行结束。
      * @throws ParseException
      */
     protected void readline() throws ParseException{
@@ -98,7 +100,14 @@ public class Lexer {
         queue.add(new IdToken(lineNo,Token.EOL));
     }
 
-
+    /**
+     * 此方法用于向queue中添加Token对象，group在java中等同于在正则表达式中的子表达式的概念，
+     * 把group(1)赋值给m，如果m非空，那么说明匹配到的就不是空格，换言之匹配成功。
+     * 如果是group(2)，说明是注释，要忽略，如果是group(3)，说明是数字，group(4)的话，
+     * 则说明是字符串，否则就是标识符。
+     * @param lineNo
+     * @param matcher
+     */
     protected void addToekn(int lineNo, Matcher matcher) {
         String m = matcher.group(1);
         if(m!=null)
@@ -138,7 +147,9 @@ public class Lexer {
     }
 
     /**
-     * 很不爽，英文写起来太难受了，之后注释就全部用中文了……
+     * NumToken，IdToken，StrToken三个类继承自Token，分别用来表示数字，标识符和字符串
+     * 对数字，记录行号，数字的值，对于标识符，记录行号，标识符本身的字符串，
+     * 对字符串，记录其行号，和字符串本身
      */
     protected static class NumToken extends Token {
         private int value;
