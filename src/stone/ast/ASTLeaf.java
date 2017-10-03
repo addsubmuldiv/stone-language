@@ -10,9 +10,18 @@ public class ASTLeaf extends ASTree{
 
     private static ArrayList<ASTree> empty=new ArrayList<>();
 
+    public String toString() {
+        return token.getText();
+    }
+
+    public Token token() {
+        return token;
+    }
+
     public ASTLeaf(Token t) {
         token=t;
     }
+
     @Override
     public ASTree child(int i) {
         throw new IndexOutOfBoundsException();
@@ -30,6 +39,6 @@ public class ASTLeaf extends ASTree{
 
     @Override
     public String location() {
-        return null;
+        return "at line "+token.getLineNumber();
     }
 }
