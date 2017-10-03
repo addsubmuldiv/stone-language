@@ -5,9 +5,14 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import java.io.*;
 
+
+/**
+ * 用于输入stone代码的窗口
+ */
 public class CodeDialog extends Reader {
     private String buffer = null;
     private int pos=0;
+
 
     @Override
     public int read(@NotNull char[] cbuf, int off, int len) throws IOException {
@@ -39,6 +44,10 @@ public class CodeDialog extends Reader {
     @Override
     public void close() throws IOException {}
 
+    /**
+     * 显示窗口，获取编辑区输入的字符串并返回
+     * @return
+     */
     protected String showDialog() {
         JTextArea area = new JTextArea(20,40);
         JScrollPane pane=new JScrollPane(area);
@@ -63,6 +72,11 @@ public class CodeDialog extends Reader {
             return null;
     }
 
+    /**
+     * 用于从文件中读取stone代码
+     * @return
+     * @throws FileNotFoundException
+     */
     public static Reader file() throws FileNotFoundException {
         JFileChooser chooser=new JFileChooser();
         if(chooser.showOpenDialog(null)==JFileChooser.APPROVE_OPTION)
