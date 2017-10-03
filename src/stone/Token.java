@@ -14,6 +14,10 @@ public abstract class Token {
         return lineNumber;
     }
 
+    /**
+     * 下面的几个方法使用了模板方法模式
+     * @return
+     */
     public boolean isIndentifier(){
         return false;
     }
