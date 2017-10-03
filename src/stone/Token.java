@@ -18,7 +18,7 @@ public abstract class Token {
      * 下面的几个方法使用了模板方法模式
      * @return
      */
-    public boolean isIndentifier(){
+    public boolean isIdentifier(){
         return false;
     }
 
