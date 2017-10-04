@@ -1,11 +1,12 @@
 package stone.ast;
 
 import java.util.List;
-
+//if的树结构，0,1,2三个子节点分别表示条件，条件为真时的语句，条件为假的时候的语句
 public class IfStmnt extends ASTList {
     public IfStmnt(List<ASTree> list) {
         super(list);
     }
+
     public ASTree condition() {
         return child(0);
     }
@@ -22,5 +23,4 @@ public class IfStmnt extends ASTList {
         return "(if "+condition()+" "+thenBlock()
                 +" else "+elseBlock()+")";
     }
-
 }

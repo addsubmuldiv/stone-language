@@ -59,7 +59,7 @@ public class BasicParser {
         operators.add("%",4,Operators.LEFT);
 
     }
-
+    //语法分析的入口
     public ASTree parse(Lexer lexer) throws ParseException {
         return program.parse(lexer);
     }
