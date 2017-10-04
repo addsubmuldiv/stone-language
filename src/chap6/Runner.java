@@ -1,10 +1,8 @@
 package chap6;
+import javassist.gluonj.util.Loader;
 
-/**
- * @Author: Lighters_c
- * @Discrpition:
- * @Date: Created in 13:42 2017/10/4
- * @Modified by:
- */
 public class Runner {
+    public static void main(String[] args) throws Throwable {
+        Loader.run(BasicInterpreter.class, args, BasicEvaluator.class);
+    }
 }

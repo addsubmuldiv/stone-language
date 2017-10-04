@@ -17,17 +17,23 @@ import java.util.List;
 @Reviser public class BasicEvaluator {
     public static final int TRUE=1;
     public static final int FALSE=0;
+
     //为ASTree类添加eval抽象方法
     @Reviser public static abstract class ASTreeEx extends ASTree {
         public abstract Object eval(Environment env);
     }
     //为上面ASTree类的eval抽象方法提供默认实现
-    @Reviser public static abstract class ASTListEx extends ASTList {
-        public ASTListEx(List<ASTree> list) {
-            super(list);
-        }
+    @Reviser public static class ASTListEx extends ASTList {
+        public ASTListEx(List<ASTree> c) { super(c); }
         public Object eval(Environment env) {
-            throw new StoneException("cannot eval: "+toString(),this);
+            throw new StoneException("cannot eval: " + toString(), this);
+        }
+    }
+
+    @Reviser public static class ASTLeafEx extends ASTLeaf {
+        public ASTLeafEx(Token t) { super(t); }
+        public Object eval(Environment env) {
+            throw new StoneException("cannot eval: " + toString(), this);
         }
     }
     //实现数字字面量的eval方法，就是直接返回数字的值
