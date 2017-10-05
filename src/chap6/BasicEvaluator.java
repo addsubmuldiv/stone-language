@@ -161,7 +161,8 @@ import java.util.List;
     }
 
     /**
-     * 块的树结构，
+     * 块的树结构，因为父类实现了Iterable接口，所以可以直接进行基于范围的for循环,对块内的每个语句递归
+     * eval
      */
     @Reviser public static class BlockEx extends BlockStmnt {
         public BlockEx(List<ASTree> list) {
@@ -201,6 +202,10 @@ import java.util.List;
         }
     }
 
+    /**
+     * while循环的树结构，在一个for(;;)中，不断对condition进行eval，然后对其结构进行判断
+     * 为真进行循环，即对循环体body进行eval，如果为假，那么返回结果
+     */
     @Reviser public static class WhileEx extends WhileStmnt {
         public WhileEx(List<ASTree> list) {
             super(list);
