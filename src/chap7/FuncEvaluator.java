@@ -28,7 +28,7 @@ import java.util.List;
     }
 
     /**
-     *
+     * 定义函数的eval，就是向环境中添加一个名字，和一个Function对象关联起来
      */
     @Reviser public static class DefStmntEx extends DefStmnt {
         public DefStmntEx(List<ASTree> list) {
@@ -39,6 +39,12 @@ import java.util.List;
             return name();
         }
     }
+
+    /**
+     * 为基本构成元素添加函数调用表达式，即fact(9)这样的，operand返回函数名，postfix返回实参序列，
+     * hasPostfix返回是否有实参序列，eval，如果有实参序列，就先对实参序列进行eval，并把他们作为参数
+     * 继续调用postfix的eval方法
+     */
     @Reviser public static class PrimaryEx extends PrimaryExpr {
         public PrimaryEx(List<ASTree> list) {
             super(list);
