@@ -18,11 +18,18 @@ import java.util.List;
  */
 @Require(BasicEvaluator.class)
 @Reviser public class FuncEvaluator {
+    /**
+     * 这里是环境接口，扩展了putNew：无视外层环境，给当前环境添加变量，和where:查找包含指定变量名的环境并返回。
+     */
     @Reviser public static interface EnvEx extends Environment {
         void putNew(String name, Object value);
         Environment where(String name);
         void setOuter(Environment e);
     }
+
+    /**
+     *
+     */
     @Reviser public static class DefStmntEx extends DefStmnt {
         public DefStmntEx(List<ASTree> list) {
             super(list);
