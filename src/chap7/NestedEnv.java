@@ -27,6 +27,9 @@ public class NestedEnv implements Environment {
     @Override
     public void put(String name, Object value) {
         Environment e =where(name);
+        if (e == null)
+            e = this;
+        ((EnvEx)e).putNew(name, value);
     }
 
     @Override
