@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @Author: Lighters_c
- * @Discrpition:
+ * @Discrpition: 实参有size()方法返回参数的数量
  * @Date: Created in 13:56 2017/10/5
  * @Modified by:
  */

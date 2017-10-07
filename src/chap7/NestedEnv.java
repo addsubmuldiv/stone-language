@@ -6,9 +6,11 @@ import java.util.HashMap;
 
 /**
  * @Author: Lighters_c
- * @Discrpition:
+ * @Discrpition: NestedEnv，对Environment接口的另一个实现，为了支持了作用域和生命周期，添加了一个字段outer用来保存外部环境
+ * 可以通过setOuter来设置外部环境，也可以在构造时传入外部环境的引用，putNew方法不管外部环境，添加一个新的变量，或者函数
+ * where返回包含指定变量名的对象的环境，get先在当前环境里面找，找不到就去outer找
  * @Date: Created in 14:30 2017/10/5
- * @Modified by:
+ * @Modified_by:
  */
 public class NestedEnv implements Environment {
     protected HashMap<String,Object> values;
