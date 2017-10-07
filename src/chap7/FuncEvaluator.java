@@ -12,11 +12,11 @@ import java.util.List;
 
 /**
  * @Author: Lighters_c
- * @Discrpition:
+ * @Discrpition: 函数的eval方法定义，依旧是使用了GluonJ，将需要修改的部分集中在一起，实现AOP
  * @Date: Created in 15:41 2017/10/5
  * @Modified by:
  */
-@Require(BasicEvaluator.class)
+@Require(BasicEvaluator.class)  //指定修改器需要用到的其他修改器，在调用FuncEvaluator前先调用BasicEvaluator
 @Reviser public class FuncEvaluator {
     /**
      * 这里是环境接口，扩展了putNew：无视外层环境，给当前环境添加变量，和where:查找包含指定变量名的环境并返回。
@@ -70,12 +70,21 @@ import java.util.List;
                 return ((ASTreeEx)operand()).eval(env);
         }
     }
+    //给Postfix类添加了一个eval方法
     @Reviser public static abstract class PostfixEx extends Postfix {
         public PostfixEx(List<ASTree> list) {
             super(list);
         }
         public abstract Object eval(Environment env, Object value);
     }
+    /**
+     * Arguments类添加的eval方法是整个函数调用功能的核心，value是要调用的函数对应的Function对象，Function对象由
+     * def语句创建。
+     * 调用func.parameters()方法获取形参列表，如果实参数量和形参数量不一致会抛出异常，否则继续，将创建Function时
+     * 保存的环境作为父环境，创建新环境newEnv,然后遍历实参，调用Params类的eval方法，把实参的值和形参的名字对应起来
+     * 放到newEnv中，最后把newEnv传给函数体，调用函数体的eval,newEnv在Arguments类的eval中创建，所以在这个方法调用
+     * 完就被垃圾回收了，与函数参数和局部变量的生命周期相符。
+     */
     @Reviser public static class ArgumentsEx extends Arguments {
         public ArgumentsEx(List<ASTree> list) {
             super(list);
