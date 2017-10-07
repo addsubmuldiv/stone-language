@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @Author: Lighters_c
- * @Discrpition:
+ * @Discrpition: 闭包的树结构，第一个子节点是参数列表，第二个是函数体,没有名字
  * @Date: Created in 23:59 2017/10/7
  * @Modified_by:
  */
