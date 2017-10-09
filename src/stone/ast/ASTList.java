@@ -26,6 +26,7 @@ public class ASTList extends ASTree {
         return children.iterator();
     }
 
+    //ASTList的location()方法返回的是它的子节点，也就是ASTLeaf的location()，也就是token的行号
     @Override
     public String location() {
         for(ASTree t:children) {

@@ -7,6 +7,13 @@ public class BasicInterpreter {
     public static void main(String[] args) throws ParseException {
         run(new BasicParser(), new BasicEnv());
     }
+
+    /**
+     * Interpreter的run就是那个花式调用eval的
+     * @param bp
+     * @param env
+     * @throws ParseException
+     */
     public static void run(BasicParser bp, Environment env)
         throws ParseException
     {
