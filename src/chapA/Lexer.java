@@ -8,7 +8,10 @@ import java.io.Reader;
 
 /**
  * @Author: Lighters_c
- * @Discrpition:
+ * @Discrpition: Reader类的read()方法，每次读取一个字符，返回的是字符的ascii码，所以需要强制转换为char类型，
+ * Lexer类有一个字段，用来作为缓冲区，如果这个字段不为NULL，那么就说明这个字段的字符并没有被正确读取进来，这个
+ * 时候，不会调用reader.read()把新的字符读进来，以此防止当自动机进入停止状态的时候，多读一个字符被丢失，在read()
+ * 方法的最后也有一个ungetChar()的调用，也是为了防止同样的问题
  * @Date: Created in 20:41 2017/10/9
  * @Modified_by:
  */
@@ -58,7 +61,7 @@ public class Lexer {
         }
         else
             throw new IOException();
-
+        //防止当自动机进入停止状态的时候，它就不读了，然后丢失掉多读的字符
         if(c>=0)
             ungetChar(c);
 

@@ -43,6 +43,11 @@ public class Natives {
         env.put(name, new NativeFunction(methodName,m));
     }
 
+    /**
+     * 添加输出字符串到控制台的函数
+     * @param obj
+     * @return
+     */
     public static int print(Object obj) {
         System.out.println(obj.toString());
         return 0;
@@ -52,10 +57,20 @@ public class Natives {
         return JOptionPane.showInputDialog(null);
     }
 
+    /**
+     * 添加返回字符串的长度的函数
+     * @param s
+     * @return
+     */
     public static int length(String s) {
         return s.length();
     }
 
+    /**
+     * 返回把其他类型转换为整数的函数
+     * @param value
+     * @return
+     */
     public static int toInt(Object value) {
         if(value instanceof String)
             return Integer.parseInt((String)value);
@@ -66,6 +81,11 @@ public class Natives {
     }
 
     private static long startTime=System.currentTimeMillis();
+
+    /**
+     * 返回当前当前时间的函数
+     * @return
+     */
     public static int currentTime() {
         return (int)(System.currentTimeMillis()-startTime);
     }
