@@ -4,7 +4,8 @@ import java.util.List;
 
 /**
  * @Author: Lighters_c
- * @Discrpition: 类定义的树结构，第一个子节点是类名，第二个是它的父类，如果有的话，最后一个是类的具体定义的树结构的引用
+ * @Discrpition: 类定义的树结构，第一个子节点是类名，第二个是它的父类(如果有的话)最后一个是类的具体定义的树结构的引用,
+ * which is 类的体
  * @Date: Created in 13:19 2017/10/13
  * @Modified_by:
  */

@@ -21,6 +21,9 @@ import chap7.FuncEvaluator.PrimaryEx;
  */
 @Require(FuncEvaluator.class)
 @Reviser public class ClassEvaluator {
+
+
+
     @Reviser public static class ClassStmntEx extends ClassStmnt {
         public ClassStmntEx(List<ASTree> list) {
             super(list);
@@ -38,13 +41,17 @@ import chap7.FuncEvaluator.PrimaryEx;
             return name();
         }
     }
+
+
+
+
     @Reviser public static class ClassBodyEx extends ClassBody {
         public ClassBodyEx(List<ASTree> list) {
             super(list);
         }
 
         /**
-         * 这里就和块结构一样了
+         * 类的体，也就是类的定义，这里就和块结构一样了(话说回来这样的话类不是和方法区别其实不大了么……)
          * @param env
          * @return
          */
@@ -55,6 +62,10 @@ import chap7.FuncEvaluator.PrimaryEx;
             return null;
         }
     }
+
+
+
+
     @Reviser public static class DotEx extends Dot {
         public DotEx(List<ASTree> list) {
             super(list);
@@ -84,6 +95,9 @@ import chap7.FuncEvaluator.PrimaryEx;
             ((ClassBodyEx)ci.body()).eval(env);
         }
     }
+
+
+
 
     @Reviser public static class AssignEx extends BinaryEx {
         public AssignEx(List<ASTree> c) {
