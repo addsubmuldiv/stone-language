@@ -103,18 +103,3 @@ import chap7.FuncEvaluator.PrimaryEx;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

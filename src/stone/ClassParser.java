@@ -8,7 +8,7 @@ import static stone.Parser.rule;
 
 /**
  * @Author: Lighters_c
- * @Discrpition:
+ * @Discrpition: 类的语法分析器，就按照BNF使用Parser库来进行定义
  * @Date: Created in 13:11 2017/10/13
  * @Modified_by:
  */
