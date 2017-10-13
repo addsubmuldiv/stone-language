@@ -25,6 +25,13 @@ import chap7.FuncEvaluator.PrimaryEx;
         public ClassStmntEx(List<ASTree> list) {
             super(list);
         }
+
+        /**
+         * 这个eval方法定义一个类，也就是说，先新建一个ClassInfo的对象，保存你定义的类的相关信息，
+         * 然后把类名和ClassInfo对象放到环境里
+         * @param env
+         * @return
+         */
         public Object eval(Environment env) {
             ClassInfo ci = new ClassInfo(this,env);
             ((EnvEx)env).put(name(),ci);
@@ -35,6 +42,12 @@ import chap7.FuncEvaluator.PrimaryEx;
         public ClassBodyEx(List<ASTree> list) {
             super(list);
         }
+
+        /**
+         * 这里就和块结构一样了
+         * @param env
+         * @return
+         */
         public Object eval(Environment env) {
             for(ASTree t: this) {
                 ((ASTreeEx)t).eval(env);

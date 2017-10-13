@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 基本构成元素的树结构，使用create方法避开了
- * 当rule()带有参数时会省略一层子节点的设定
+ * 当只要rule()带有参数时就会省略一层子节点的设定,使得当他不只一个子节点的时候，不会省略
  */
 public class PrimaryExpr extends ASTList{
     public PrimaryExpr(List<ASTree> list) {
