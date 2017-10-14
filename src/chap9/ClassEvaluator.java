@@ -70,6 +70,16 @@ import chap7.FuncEvaluator.PrimaryEx;
         public DotEx(List<ASTree> list) {
             super(list);
         }
+
+        /**
+         * Dot的eval需要两个参数，一个是环境，一个是句点左侧的运算结果,如果句点右侧是"new"，
+         * 句点表达式用于创建一个新对象，其中句点左侧是要创建的类,其运算结果是一个ClassInfo对象，
+         * eval方法根据ClassInfo对象创建一个新的环境，把ClassInfo对象中保存的环境作为这个环境的
+         * 外部环境，然后在新的环境里添加这个新建的stone对象，which is StoneObject类的一个实例
+         * @param env
+         * @param value
+         * @return
+         */
         public Object eval(Environment env, Object value) {
             String member=name();
             if(value instanceof ClassInfo) {
