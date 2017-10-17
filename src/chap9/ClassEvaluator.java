@@ -80,7 +80,8 @@ import chap7.FuncEvaluator.PrimaryEx;
          *
          * 如果句点右边不是new，该句点表达式将用于方法调用或者字段访问。句点左侧是需要访问的对象，
          * 它的计算结果是一个StoneObject对象,如果是一个字段，那么将调用它的read方法获取字段的值
-         * 并返回。
+         * 并返回。或者返回的是一个Function对象，在Stone中字段和方法没有本质区别，只是返回的对象
+         * 不一样,我们无需做特别的处理来实现方法调用。
          * @param env
          * @param value
          * @return
@@ -119,7 +120,8 @@ import chap7.FuncEvaluator.PrimaryEx;
 
 
     /**
-     * 为Stone中的类添加对其字段进行赋值的功能
+     * 为Stone中的类添加对其字段进行赋值的功能,先判断左边的是不是一个类对象的字段(看后缀的是不是Dot类的实例)
+     * 如果是的话，就把这个类的这个字段赋值为rvalue
      */
     @Reviser public static class AssignEx extends BinaryEx {
         public AssignEx(List<ASTree> c) {
@@ -140,6 +142,14 @@ import chap7.FuncEvaluator.PrimaryEx;
             return super.computeAssign(env,rvalue);
         }
 
+        /**
+         * 获取Dot类对象的名字(就是句点后面的字段名)，然后调用StoneObject对象的write()方法，对其的某一字段
+         * 进行赋值
+         * @param obj
+         * @param expr
+         * @param rvalue
+         * @return
+         */
         protected Object setField(StoneObject obj, Dot expr, Object rvalue) {
             String name=expr.name();
             try {

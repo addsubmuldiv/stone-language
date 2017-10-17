@@ -17,14 +17,33 @@ public class StoneObject {
     public String toString() {
         return "<object:"+hashCode()+">";
     }
+
+    /**
+     * 从环境中取出指定的那个字段或者方法
+     * @param member
+     * @return
+     * @throws AccessException
+     */
     public Object read(String member) throws AccessException {
         return getEnv(member).get(member);
     }
 
+    /**
+     * 把字段重新赋值
+     * @param member
+     * @param value
+     * @throws AccessException
+     */
     public void write(String member, Object value) throws AccessException {
         ((EnvEx)getEnv(member)).putNew(member,value);
     }
 
+    /**
+     * 获取member这个字段所处的环境
+     * @param member
+     * @return
+     * @throws AccessException
+     */
     protected Environment getEnv(String member) throws AccessException {
         Environment e=((EnvEx)env).where(member);
         if(e!=null&&e==env)
