@@ -64,8 +64,9 @@ import chap7.FuncEvaluator.PrimaryEx;
     }
 
 
-
-
+    /**
+     * Dot类也是Postfix类的子类
+     */
     @Reviser public static class DotEx extends Dot {
         public DotEx(List<ASTree> list) {
             super(list);
@@ -75,7 +76,11 @@ import chap7.FuncEvaluator.PrimaryEx;
          * Dot的eval需要两个参数，一个是环境，一个是句点左侧的运算结果,如果句点右侧是"new"，
          * 句点表达式用于创建一个新对象，其中句点左侧是要创建的类,其运算结果是一个ClassInfo对象，
          * eval方法根据ClassInfo对象创建一个新的环境，把ClassInfo对象中保存的环境作为这个环境的
-         * 外部环境，然后在新的环境里添加这个新建的stone对象，which is StoneObject类的一个实例
+         * 外部环境，然后在新的环境里添加这个新建的stone对象，which is StoneObject类的一个实例；
+         *
+         * 如果句点右边不是new，该句点表达式将用于方法调用或者字段访问。句点左侧是需要访问的对象，
+         * 它的计算结果是一个StoneObject对象,如果是一个字段，那么将调用它的read方法获取字段的值
+         * 并返回。
          * @param env
          * @param value
          * @return
@@ -99,6 +104,12 @@ import chap7.FuncEvaluator.PrimaryEx;
             }
             throw new StoneException("bad member access: "+member,this);
         }
+
+        /**
+         * 对新的对象进行一些初始化工作，包括把它的父类添加到新建的环境中
+         * @param ci
+         * @param env
+         */
         protected void initObject(ClassInfo ci, Environment env) {
             if(ci.superClass()!=null)
                 initObject(ci.superClass(),env);
@@ -107,8 +118,9 @@ import chap7.FuncEvaluator.PrimaryEx;
     }
 
 
-
-
+    /**
+     * 为Stone中的类添加对其字段进行赋值的功能
+     */
     @Reviser public static class AssignEx extends BinaryEx {
         public AssignEx(List<ASTree> c) {
             super(c);
