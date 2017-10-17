@@ -5,7 +5,8 @@ import chap6.Environment;
 import chap7.FuncEvaluator.EnvEx;
 /**
  * @Author: Lighters_c
- * @Discrpition:
+ * @Discrpition: 使用闭包来实现对象，就是说把对象本身当做是一种环境，字段什么的就是自由变量，
+ * 然后参数传进来的是约束变量，
  * @Date: Created in 14:08 2017/10/13
  * @Modified_by:
  */
