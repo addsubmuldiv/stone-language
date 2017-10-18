@@ -12,6 +12,11 @@ public class ArrayLiteral extends ASTList {
     public ArrayLiteral(List<ASTree> list) {
         super(list);
     }
+
+    /**
+     * 获取数组的大小
+     * @return
+     */
     public int size() {
         return numChildren();
     }
